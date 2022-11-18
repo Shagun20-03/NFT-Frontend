@@ -1,0 +1,55 @@
+.form-product {
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    margin: auto;
+  }
+  
+  .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+  }
+  
+  @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+  }
+
+  .filepond--drop-label {
+    color: #4c4e53;
+  }
+  
+  .filepond--label-action {
+    text-decoration-color: #babdc0;
+  }
+  
+  .filepond--panel-root {
+    border-radius: 2em;
+    background-color: #edf0f4;
+    height: 1em;
+  }
+  
+  .filepond--item-panel {
+    background-color: #595e68;
+  }
+  
+  .filepond--drip-blob {
+    background-color: #7f8a9a;
+  }
+  
+  
+  /**
+   * Page Styles
+   */
+  /* html {
+    padding:30vh 0 0;
+  }
+  
+  body {
+    max-width: 20em;
+    margin: 0 auto;
+  } */
