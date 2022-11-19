@@ -57,20 +57,58 @@ const ip_addr = '54.83.105.94';
 
 // Create a new product
 async function createNewProduct(product) {
-    var result = false;
-    const formData = new FormData();
-    for (const name in product) {
-        formData.append(name, product[name]);
-    }
-
-    await fetch(`http://${ip_addr}/api/upload/`, {
+    // var result = false;
+    console.log(product);
+    const response=await fetch(`http://${ip_addr}/api/upload/`, {
         method: 'POST',
-        body: formData
+        mode: 'no-cors',
+        body: product
     })
-        .then(_ => result = true)
-        .catch(_ => result = false);
-    return result;
+    const response1=await fetch(`http://${ip_addr}/api/upload/`, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: product
+    })
+    let response2;
+    fetch(`http://${ip_addr}/api/upload/`, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: product
+    })
+    .then(response => response.json())
+    .then(result => {
+        response2=result
+    });
+    console.log(response);
+    console.log(response1);
+    console.log(response2);
+    return true;
 }
+    // $.ajax({      url: `http://${ip_addr}/api/upload/`,
+    //                 type: 'post',
+    //                 data: product,
+    //                 contentType: false,
+    //                 processData: false,
+    //                 crossDomain: true,
+    //                 "headers": {
+    //                     "Access-Control-Allow-Origin":"*"
+    //                 },
+    //                 success: function(response){
+    //                     console.log(response);
+    //                     if(response != 0){
+    //                        alert('file uploaded');
+    //                     }
+    //                     else{
+    //                         alert('file not uploaded');
+    //                     }
+    //                 },
+    //             });
+    //     .then((response) => {
+    //         console.log(response.json());
+    //         result=true;
+    //     } )
+    //     .catch(_ => result = false);
+    // return result;
 
 // Update product
 // async function updateProduct(id, product) {

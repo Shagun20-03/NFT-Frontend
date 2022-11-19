@@ -24,27 +24,35 @@ $("#add-product").on("click", function() {
 $("#product-form").submit(async function(form) {
     form.preventDefault();
 
-    const name = $("#productNameInput").val();
-    const Id = $("#productIdInput").val();
-    const img = $("#productImageInput").val();
-    const price = $("#productPriceInput").val();
-    //const category = $("#productCategoryInput").val();
-    const description = $("#productDescriptionInput").val();
+    // const name = $("#productNameInput").val();
+    // const Id = $("#productIdInput").val();
+    // const img = $("#productImageInput").val();
+    // const price = $("#productPriceInput").val();
+    // //const category = $("#productCategoryInput").val();
+    // const description = $("#productDescriptionInput").val();
 
-    const product = {
-        "product_name": name,
-        "product_id": Id,
-        "file": img,
-        "product_price": price,
-        //"category": category,
-        "product_desc": description
-    };
+    // const product = {
+    //     "product_name": name,
+    //     "product_id": Id,
+    //     "file": img,
+    //     "product_price": price,
+    //     //"category": category,
+    //     "product_desc": description
+    // };
 
-    var result = await createNewProduct(product);
+    const formElement = document.querySelector("#product-form");
+    const formData = new FormData(formElement);
+    console.log(formElement);
+    // var form = $('#product-form').serialize();               
+    // var formData = new FormData($(form)[1]);
+    // console.log(form);
+    console.log(formData);
 
+    var result = await createNewProduct(formData);
     if (result) {
-        alert("Product has been added!");
-        window.location.href = "index.html";
+        console.log(result);
+        //alert("Product has been added!");
+        // window.location.href = "index.html";
     } else {
         alert("Failed to add product");
     }
