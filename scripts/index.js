@@ -11,17 +11,17 @@
 // });
 
 // Alert the user when they "bought" a product
-$("#card-container").on("click", "#buy-btn", function() {
+$("#card-container").on("click", "#buy-btn", function () {
     alert("Thank you for adding product");
 });
 
 // Handle page changes to add-product.html
-$("#add-product").on("click", function() {
+$("#add-product").on("click", function () {
     window.location.href = "add-product.html";
 });
 
 // Handle form submit for add-product.html
-$("#product-form").submit(async function(form) {
+$("#product-form").submit(async function (form) {
     form.preventDefault();
 
     // const name = $("#productNameInput").val();
@@ -103,7 +103,7 @@ $("#product-form").submit(async function(form) {
 // });
 
 // Handle the creation of update-product url
-$("#card-container").on("click", "#edit-btn", function() {
+$("#card-container").on("click", "#edit-btn", function () {
     // Get the id of the product
     var productID = $(this).parent().parent().parent().attr("id");
     var url = "update-product.html" + "?id=" + productID;
