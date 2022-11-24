@@ -173,8 +173,8 @@
             // });
 //fetch the final data
             
-        }) -->
-    </script>
+        }) 
+    </script>-->
     <script type="module">
         import { ethers } from './ethers.main.js';
         // const { ethers } = require('ethers');
@@ -194,7 +194,7 @@
          * 	- node connection -> MetaMask
          */
         async function execute() {
-            var contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+            var contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
             var abi = [
                 {
                     "inputs": [],
@@ -358,6 +358,44 @@
                             "internalType": "uint256",
                             "name": "tokenId",
                             "type": "uint256"
+                        }
+                    ],
+                    "name": "burnExpiredToken",
+                    "outputs": [
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "burnUnSoldProduct",
+                    "outputs": [
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
                         },
                         {
                             "internalType": "uint256",
@@ -379,8 +417,14 @@
                         }
                     ],
                     "name": "checkExpiryRemaining",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
                     "type": "function"
                 },
                 {
@@ -468,19 +512,6 @@
                     "type": "function"
                 },
                 {
-                    "inputs": [],
-                    "name": "getSignal",
-                    "outputs": [
-                        {
-                            "internalType": "string",
-                            "name": "",
-                            "type": "string"
-                        }
-                    ],
-                    "stateMutability": "pure",
-                    "type": "function"
-                },
-                {
                     "inputs": [
                         {
                             "internalType": "address",
@@ -513,15 +544,21 @@
                         }
                     ],
                     "name": "isProductSold",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "internalType": "bool",
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ],
+                    "stateMutability": "view",
                     "type": "function"
                 },
                 {
                     "inputs": [
                         {
                             "internalType": "string",
-                            "name": "tokenURI",
+                            "name": "ipfsHash",
                             "type": "string"
                         },
                         {
@@ -586,8 +623,14 @@
                         }
                     ],
                     "name": "ownerShipProof",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
+                    "outputs": [
+                        {
+                            "internalType": "bool",
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ],
+                    "stateMutability": "view",
                     "type": "function"
                 },
                 {
@@ -655,6 +698,19 @@
                         }
                     ],
                     "name": "setApprovalForAll",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "ipfsURI",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "setipfsBaseURI",
                     "outputs": [],
                     "stateMutability": "nonpayable",
                     "type": "function"
@@ -773,8 +829,10 @@
             console.log('provider:', provider);
             const contract = new ethers.Contract(contractAddress, abi, signer);
 
-            var contract1=await contract.getSignal();
-            console.log(contract1);
+            var contract1 = await contract.getListingPrice();
+            
+            console.log(contract1.toString());
+            
         }
         await connect();
         await execute();
