@@ -9,7 +9,7 @@
 //         $("#card-container").append(card);
 //     }
 // });
-
+import {createNewProduct} from "./utils.mjs"
 // Alert the user when they "bought" a product
 $("#card-container").on("click", "#buy-btn", function () {
     alert("Thank you for adding product");

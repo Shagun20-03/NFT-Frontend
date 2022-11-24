@@ -52,7 +52,7 @@
 
 //     return cards;
 // }
-
+import { ethers } from '../ethers.main.js'
 const ip_addr = '54.83.105.94';
 
 // Create a new product
@@ -64,7 +64,29 @@ async function createNewProduct(product) {
     data: product,
     headers: { "Content-Type": "multipart/form-data" },
   })
-  console.log(response.data);
+  console.log(response.data.finalHash);
+  await window.connectWallet();
+  await window.executeContract();
+  if(window.contract!=null){
+    const listingPrice = ethers.utils.parseUnits('0.05', 'ether');
+     const received=await window.contract.mintToken(
+        response.data.finalHash,
+        Number(document.querySelector("#product_price")),
+        Number(document.querySelector("#expiry_duration")),
+        Number(document.querySelector("#warranty_secretkey")),
+        {
+            value: listingPrice,
+        }
+    )
+     const events=await received.wait();
+     console.log(events);
+    console.log(listingPrice);
+    console.log("Contract created");
+  }
+  else{
+    console.log("Contract not created");
+  }
+
   return true;
 }
 // $.ajax({      url: `http://${ip_addr}/api/upload/`,
@@ -150,3 +172,6 @@ async function getProduct(id) {
     return {};
 }
 
+export {
+    createNewProduct
+}
